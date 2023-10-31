@@ -1,0 +1,16 @@
+.Header{
+    background-color: rgb(150, 185, 215);
+    position: sticky;
+    top:0;
+}
+.BreadCrumbs{
+    display: none;
+}
+@media (max-width:720px){
+.NavItem{
+display: none;
+}
+.BreadCrumbs{
+    display: block;
+}
+}
