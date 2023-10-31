@@ -8,6 +8,7 @@ import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ShowBiz from './components/ShowBiz/ShowBiz';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

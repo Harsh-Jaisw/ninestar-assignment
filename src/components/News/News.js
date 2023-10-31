@@ -6,7 +6,7 @@ function News() {
   useEffect(() => {
     // axios
     //   .get(
-    //     "https://newsapi.org/v2/everything?q=tesla&from=2023-09-30&sortBy=publishedAt&apiKey=f72cb7c860624cf3a6e4910f0ff725a1"
+    //     "https://newsapi.org/v2/everything?q=tesla&from=2023-09-30&sortBy=publishedAt&apiKey="
     //   )
     //   .then((res) => setData(res.data))
     //   .catch((err) => console.log(err));
