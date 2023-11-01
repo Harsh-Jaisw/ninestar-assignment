@@ -4,15 +4,15 @@ import axios from "axios";
 function News() {
     const [data,setData]=useState([])
   useEffect(() => {
-    // axios
-    //   .get(
-    //     "https://newsapi.org/v2/everything?q=tesla&from=2023-09-30&sortBy=publishedAt&apiKey="
-    //   )
-    //   .then((res) => setData(res.data))
-    //   .catch((err) => console.log(err));
+    axios
+      .get(
+        `https://newsapi.org/v2/everything?q=tesla&from=2023-09-30&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}`
+      )
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
   }, []);
   return (
-  <div>News</div>
+  <div style={{textOverflow:"wrap"}}>{JSON.stringify(data)}</div>
     );
 }
 
