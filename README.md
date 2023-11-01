@@ -49,12 +49,12 @@ Contributing
 If you would like to contribute to this project, please follow these steps:
 
 Fork the repository.
-Create a new branch for your feature or bugfix: git checkout -b feature-name.
-Make your changes and commit them: git commit -m 'Add new feature'.
-Push to your fork: git push origin feature-name.
-Create a pull request to the main repository.
-License
+1. Create a new branch for your feature or bugfix: git checkout -b feature-name.
+2. Make your changes and commit them: git commit -m 'Add new feature'.
+3. Push to your fork: git push origin feature-name.
+4. Create a pull request to the main repository.
+5. License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 Contact
-For any questions or inquiries, please contact Your Name.
+For any questions or inquiries, please contact Harsh Jaiswal.
