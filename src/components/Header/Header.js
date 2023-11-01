@@ -7,6 +7,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useDispatch } from "react-redux";
 import { searchItem } from "../../store/search";
+import Button from "react-bootstrap/Button";
 function Header() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -44,7 +45,7 @@ function Header() {
           <AiOutlineSearch
             style={{
               position: "relative",
-              top: "20px",
+              top: "25px",
               left: "5px",
               color: "black",
             }}
@@ -52,10 +53,11 @@ function Header() {
           <input
             placeholder="Search"
             type="search"
-            style={{ paddingLeft: "1.5rem", color: "black" }}
+            style={{ paddingLeft: "1.5rem", height:"2rem" , color: "black" }}
             onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={() => handleSearch()}
+           
           />
+           <Button className="mx-1" onClick={()=>handleSearch()}>Search</Button>
         </li>}
       </ul>
       <ul className="flex-3 justify-end mr-6">
@@ -76,7 +78,7 @@ function Header() {
               <AiOutlineSearch
                 style={{
                   position: "relative",
-                  top: "20px",
+                  top: "25px",
                   left: "5px",
                   color: "black",
                 }}
@@ -84,10 +86,11 @@ function Header() {
               <input
                 placeholder="Search"
                 type="search"
-                style={{ paddingLeft: "1.5rem", color: "black" }}
+                style={{ paddingLeft: "1.5rem", height:"2rem" ,color: "black" }}
                 onChange={(e) => setSearch(e.target.value)}
-                onKeyDown={() => handleSearch()}
+              
               />
+              <Button className="mx-1"  onClick={()=>handleSearch()}>Search</Button>
             </li>
             }
             <li

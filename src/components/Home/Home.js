@@ -11,13 +11,20 @@ function Home() {
   const [data, setData] = useState([]);
   const [content, setContent] = useState({});
   const [open, setOpen] = useState(false);
+  const [loader, setLoader] = useState(true);
   useEffect(() => {
     axios
       .get(
         `https://newsapi.org/v2/everything?q=all&from=2023-09-31&to=2023-10-31&sortBy=popularity&apiKey=${process.env.REACT_APP_API_KEY}`
       )
-      .then((res) => setData(res.data))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        setData(res.data);
+        setLoader(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoader(false);
+      });
   }, []);
   function handleShow(breakpoint) {
     setContent(breakpoint);
@@ -26,6 +33,16 @@ function Home() {
 
   return (
     <>
+    { loader &&<div className="flex justify-center items-center h-[90vh]"> <div className="dot-spinner">
+    <div className="dot-spinner__dot"></div>
+    <div className="dot-spinner__dot"></div>
+    <div className="dot-spinner__dot"></div>
+    <div className="dot-spinner__dot"></div>
+    <div className="dot-spinner__dot"></div>
+    <div className="dot-spinner__dot"></div>
+    <div className="dot-spinner__dot"></div>
+    <div className="dot-spinner__dot"></div>
+</div></div>}
       <Modal
         show={open}
         size="lg"
@@ -115,36 +132,31 @@ function Home() {
         </div>
       </div>
       <section className="my-5 p-4 mx-auto w-[90%]">
-         
-         <div className="grid gap-2 lg:grid-cols-4 ">
-           {data.articles?.slice(4, 8).map((item, i) => (
-             <div
-               key={i}
-               onClick={()=>handleShow(item)}
-               className=" flex flex-column gap-2 items-center cursor-pointer"
-               style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
-             >
-               <div className="news_image_container min-w-[250px] mx-auto  shrink-0 grow-0 basis-auto ">
-                 <div
-                   className=" w-full relative mb-6 overflow-hidden g bg-contain bg-no-repeat shadow-sm dark:shadow-black/20"
-                 >
-                   <img
-                     src={item.urlToImage}
-                     className="w-full h-full object-fill"
-                     alt="news Image"
-                   />
-                 </div>
-               </div>
+        <div className="grid gap-2 lg:grid-cols-4 ">
+          {data.articles?.slice(4, 8).map((item, i) => (
+            <div
+              key={i}
+              onClick={() => handleShow(item)}
+              className=" flex flex-column gap-2 items-center cursor-pointer"
+              style={{ boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
+            >
+              <div className="news_image_container min-w-[250px] mx-auto  shrink-0 grow-0 basis-auto ">
+                <div className=" w-full relative mb-6 overflow-hidden g bg-contain bg-no-repeat shadow-sm dark:shadow-black/20">
+                  <img
+                    src={item.urlToImage}
+                    className="w-full h-full object-fill"
+                    alt="news Image"
+                  />
+                </div>
+              </div>
 
-               <div className=" news_detail_container">
-                 <p className="text-[12px] p-2">
-                   {item.description}
-                 </p>
-               </div>
-             </div>
-           ))}
-         </div>
-       </section> 
+              <div className=" news_detail_container">
+                <p className="text-[12px] p-2">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </>
   );
 }
@@ -152,5 +164,4 @@ function Home() {
 export default Home;
 
 {
-  
 }
