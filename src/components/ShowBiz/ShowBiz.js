@@ -35,10 +35,11 @@ function ShowBiz() {
       </Modal.Body>
   </Modal>
   <Row xs={1} md={4} className="g-2">
-    {data.articles?.map((item) => (
-      <Col key={item.source.id}>
+    {data.articles?.map((item,i) => (
+      
+      <Col key={i}>
         <Card style={{ height: "32rem" }}>
-          <Card.Img variant="top" src={item.urlToImage} style={{height:"15rem"}} />
+          <Card.Img variant="top" src={item.urlToImage} alt="newsImg" style={{height:"15rem"}} />
           <Card.Body>
             <Card.Title>{item.title}</Card.Title>
             <Card.Text>{item.description}</Card.Text>
@@ -59,3 +60,5 @@ function ShowBiz() {
 }
 
 export default ShowBiz
+
+ 

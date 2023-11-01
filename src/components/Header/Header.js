@@ -3,36 +3,68 @@ import "./Header.css";
 import Logo from "../../Assets/nineStar-logo.png";
 import { useNavigate } from "react-router-dom";
 import { HiMiniBars3 } from "react-icons/hi2";
+import { AiOutlineSearch } from "react-icons/ai";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { useDispatch } from "react-redux";
+import { searchItem } from "../../store/search";
 function Header() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+  function handleSearch() {
+    dispatch(searchItem(search));
+  }
+
   return (
-    <nav className="Header shadow-md">
+    <nav className="Header shadow-md flex items-center ">
       <ul
-        className="flex h-12 text-white flex items-center justify-between p-4"
+        className="flex flex-1 h-12 text-white flex items-center gap-4 p-4"
         type="none"
       >
-        <li className="cursor-pointer"  onClick={() => navigate("/")}>
-          <img src={Logo} width={20} height={20} />
+        <li className="cursor-pointer" onClick={() => navigate("/")}>
+          <img src={Logo} width={20} height={20} alt="logo" />
         </li>
-            <li className="cursor-pointer NavItem" onClick={() => navigate("/")}>
-              Home
-            </li>
-            <li className="cursor-pointer NavItem" onClick={() => navigate("/News")}>
-              News
-            </li>
-            <li className="cursor-pointer NavItem" onClick={() => navigate("/ShowBiz")}>
-              Show Biz
-            </li>
-    
-          <li
-            className="text-white text-xl font-black BreadCrumbs"
-            onClick={() => setShow(!show)}
-          >
-            <HiMiniBars3/>
-          </li>
-        
+        <li className="cursor-pointer NavItem" onClick={() => navigate("/")}>
+          Home
+        </li>
+        <li
+          className="cursor-pointer NavItem"
+          onClick={() => navigate("/News")}
+        >
+          News
+        </li>
+        <li
+          className="cursor-pointer NavItem"
+          onClick={() => navigate("/ShowBiz")}
+        >
+          Show Biz
+        </li>
+      { window.location.pathname.split('/')[1] =="News" && <li className="cursor-pointer NavItem">
+          <AiOutlineSearch
+            style={{
+              position: "relative",
+              top: "20px",
+              left: "5px",
+              color: "black",
+            }}
+          />{" "}
+          <input
+            placeholder="Search"
+            type="search"
+            style={{ paddingLeft: "1.5rem", color: "black" }}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={() => handleSearch()}
+          />
+        </li>}
+      </ul>
+      <ul className="flex-3 justify-end mr-6">
+        <li
+          className="text-white text-xl font-black BreadCrumbs"
+          onClick={() => setShow(!show)}
+        >
+          <HiMiniBars3 />
+        </li>
       </ul>
       <Offcanvas show={show} onHide={() => setShow(false)}>
         <Offcanvas.Header closeButton>
@@ -40,6 +72,24 @@ function Header() {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ul className="flex flex-column gap-4">
+         {  window.location.pathname.split('/')[1] =="News" && <li className="cursor-pointer">
+              <AiOutlineSearch
+                style={{
+                  position: "relative",
+                  top: "20px",
+                  left: "5px",
+                  color: "black",
+                }}
+              />{" "}
+              <input
+                placeholder="Search"
+                type="search"
+                style={{ paddingLeft: "1.5rem", color: "black" }}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={() => handleSearch()}
+              />
+            </li>
+            }
             <li
               className="cursor-pointer"
               onClick={() => {

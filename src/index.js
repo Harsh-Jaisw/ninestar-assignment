@@ -1,25 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import {BrowserRouter, Route, Routes} from "react-router-dom"
-import reportWebVitals from './reportWebVitals';
-import News from './components/News/News';
-import Header from './components/Header/Header';
-import Home from './components/Home/Home';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ShowBiz from './components/ShowBiz/ShowBiz';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import reportWebVitals from "./reportWebVitals";
+import News from "./components/News/News";
+import Header from "./components/Header/Header";
+import Home from "./components/Home/Home";
+import "bootstrap/dist/css/bootstrap.min.css";
+import ShowBiz from "./components/ShowBiz/ShowBiz";
+import { ThemeProvider } from "@material-tailwind/react";
+import { Provider } from 'react-redux';
+import store from './store';
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Header/>
-    <Routes>
-      <Route path="/" element={<Home/>}></Route>
-      <Route path="/news" element={<News/>}></Route>
-      <Route path="/ShowBiz" element={<ShowBiz/>}></Route>
-    </Routes>
-    </BrowserRouter>
+      <Provider store={store}>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/news" element={<News />}></Route>
+          <Route path="/ShowBiz" element={<ShowBiz />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider></Provider>
   </React.StrictMode>
 );
 
