@@ -30,7 +30,7 @@ function Header() {
             className="text-white text-xl font-black BreadCrumbs"
             onClick={() => setShow(!show)}
           >
-            <HiMiniBars3 />
+            <HiMiniBars3/>
           </li>
         
       </ul>
