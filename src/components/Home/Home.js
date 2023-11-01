@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
 import "./Home.css";
 import axios from "axios";
 import Col from "react-bootstrap/Col";
@@ -8,8 +7,8 @@ import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
 function Home() {
   const [data, setData] = useState([]);
-  const [content, setContent] = useState(true);
-  const [show, setShow] = useState(false);
+  const [content, setContent] = useState({});
+  const [show, setShow] = useState(false)
   useEffect(() => {
     axios
       .get(
@@ -32,21 +31,22 @@ function Home() {
         <Modal.Body>
     <p>{content.content}</p> 
   <div className="flex justify-between"> <p> By- {content.author}</p>
-   <p>Published At - {content.publishedAt.split('T')[0]}</p></div>
+   <p>Published At - {content.publishedAt?.split('T')[0]}</p></div>
           </Modal.Body>
       </Modal>
       <Row xs={1} md={4} className="g-2">
         {data.articles?.map((item) => (
           <Col key={item.source.id}>
-            <Card style={{ height: "32rem" }}>
-              <Card.Img variant="top" src={item.urlToImage} />
+            <Card style={{ height: "32rem" ,background:"#f2dace" }}>
+              <Card.Img variant="top" src={item.urlToImage} style={{height:"15rem"}} />
               <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
                 <Card.Text>{item.description}</Card.Text>
 
                 <Card.Link
-                  style={{ position: "absolute", bottom: "30px" }}
+                  style={{ position: "absolute", bottom: "10px" }}
                   onClick={() => handleShow(item)}
+                  className="cursor-pointer"
                 >
                   Read More
                 </Card.Link>
