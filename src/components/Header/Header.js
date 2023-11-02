@@ -41,7 +41,7 @@ function Header() {
         >
           Show Biz
         </li>
-      { window.location.pathname.split('/')[1] =="News" && <li className="cursor-pointer NavItem">
+      { window.location.pathname.split('/')[1] === "News" && <li className="cursor-pointer NavItem">
           <AiOutlineSearch
             style={{
               position: "relative",
